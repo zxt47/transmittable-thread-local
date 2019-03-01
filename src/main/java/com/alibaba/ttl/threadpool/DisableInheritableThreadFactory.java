@@ -14,6 +14,8 @@ import java.util.concurrent.ThreadFactory;
 public interface DisableInheritableThreadFactory extends ThreadFactory {
     /**
      * Unwrap {@link DisableInheritableThreadFactory} to the original/underneath one.
+     *
+     * @return original ThreadFactory
      */
     @NonNull
     ThreadFactory unwrap();

@@ -21,6 +21,7 @@ public class TtlForkJoinPoolHelper {
      * Wrapper of {@link ForkJoinWorkerThreadFactory}, disable inheritable.
      *
      * @param threadFactory input thread factory
+     * @return decorated ThreadFactory
      * @see DisableInheritableForkJoinWorkerThreadFactory
      * @since 2.10.1
      */
@@ -35,6 +36,7 @@ public class TtlForkJoinPoolHelper {
     /**
      * Wrapper of {@link ForkJoinPool#defaultForkJoinWorkerThreadFactory}, disable inheritable.
      *
+     * @return default decorated ForkJoinWorkerThreadFactory without inheritable feature
      * @see #getDisableInheritableForkJoinWorkerThreadFactory(ForkJoinWorkerThreadFactory)
      * @since 2.10.1
      */
@@ -46,6 +48,8 @@ public class TtlForkJoinPoolHelper {
     /**
      * check the {@link ForkJoinWorkerThreadFactory} is  {@link DisableInheritableForkJoinWorkerThreadFactory} or not.
      *
+     * @param threadFactory target ForkJoinWorkerThreadFactory
+     * @return if it's decorated
      * @see DisableInheritableForkJoinWorkerThreadFactory
      * @since 2.10.1
      */
@@ -56,6 +60,8 @@ public class TtlForkJoinPoolHelper {
     /**
      * Unwrap {@link DisableInheritableForkJoinWorkerThreadFactory} to the original/underneath one.
      *
+     * @param threadFactory target ForkJoinWorkerThreadFactory
+     * @return original ForkJoinWorkerThreadFactory
      * @see DisableInheritableForkJoinWorkerThreadFactory
      * @since 2.10.1
      */

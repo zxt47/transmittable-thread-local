@@ -106,6 +106,7 @@ public final class TtlCallable<V> implements Callable<V>, TtlEnhanced, TtlAttach
      *
      * @param callable                          input {@link Callable}
      * @param releaseTtlValueReferenceAfterCall release TTL value reference after run, avoid memory leak even if {@link TtlRunnable} is referred.
+     * @param <T>                               return type of Callable
      * @return Wrapped {@link Callable}
      */
     @Nullable
@@ -121,6 +122,7 @@ public final class TtlCallable<V> implements Callable<V>, TtlEnhanced, TtlAttach
      * @param callable                          input {@link Callable}
      * @param releaseTtlValueReferenceAfterCall release TTL value reference after run, avoid memory leak even if {@link TtlRunnable} is referred.
      * @param idempotent                        is idempotent or not. {@code true} will cover up bugs! <b>DO NOT</b> set, only when you know why.
+     * @param <T>                               return type of Callable
      * @return Wrapped {@link Callable}
      */
     @Nullable
@@ -139,6 +141,7 @@ public final class TtlCallable<V> implements Callable<V>, TtlEnhanced, TtlAttach
      * wrap input {@link Callable} Collection to {@link TtlCallable} Collection.
      *
      * @param tasks task to be wrapped
+     * @param <T>   return type of Callable
      * @return Wrapped {@link Callable}
      */
     @NonNull
@@ -151,6 +154,7 @@ public final class TtlCallable<V> implements Callable<V>, TtlEnhanced, TtlAttach
      *
      * @param tasks                             task to be wrapped
      * @param releaseTtlValueReferenceAfterCall release TTL value reference after run, avoid memory leak even if {@link TtlRunnable} is referred.
+     * @param <T>                               return type of Callable
      * @return Wrapped {@link Callable}
      */
     @NonNull
@@ -164,6 +168,7 @@ public final class TtlCallable<V> implements Callable<V>, TtlEnhanced, TtlAttach
      * @param tasks                             task to be wrapped
      * @param releaseTtlValueReferenceAfterCall release TTL value reference after run, avoid memory leak even if {@link TtlRunnable} is referred.
      * @param idempotent                        is idempotent or not. {@code true} will cover up bugs! <b>DO NOT</b> set, only when you know why.
+     * @param <T>                               return type of Callable
      * @return Wrapped {@link Callable}
      */
     @NonNull
@@ -185,6 +190,9 @@ public final class TtlCallable<V> implements Callable<V>, TtlEnhanced, TtlAttach
      * <p>
      * so {@code TtlCallable.unwrap(TtlCallable.get(callable))} will always return the same input {@code callable} object.
      *
+     * @param callable  decorated Callable
+     * @param <T>       return type of Callable
+     * @return origin Callable
      * @see #get(Callable)
      * @since 2.10.2
      */
@@ -201,6 +209,9 @@ public final class TtlCallable<V> implements Callable<V>, TtlEnhanced, TtlAttach
      * <p>
      * This method is {@code null}-safe, when input {@code Callable} parameter is {@code null}, return a empty list.
      *
+     * @param tasks decorated Callables collection
+     * @param <T>   return type of Callable
+     * @return original Callable list
      * @see #gets(Collection)
      * @see #unwrap(Callable)
      * @since 2.10.2
