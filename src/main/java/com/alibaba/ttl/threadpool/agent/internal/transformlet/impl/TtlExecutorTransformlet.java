@@ -73,7 +73,12 @@ public class TtlExecutorTransformlet implements JavassistTransformlet {
         for (int i = 0; i < parameterTypes.length; i++) {
             final String paramTypeName = parameterTypes[i].getName();
             if (PARAM_TYPE_NAME_TO_DECORATE_METHOD_CLASS.containsKey(paramTypeName)) {
-                String code = String.format("$%d = %s.get($%d, false, true);", i + 1, PARAM_TYPE_NAME_TO_DECORATE_METHOD_CLASS.get(paramTypeName), i + 1);
+                String code = String.format(
+                        // decorate to TTL wrapper,
+                        // then set AutoWrapper attachment/Tag
+                        "$%d = %s.get($%d, false, true);"
+                                + "\ncom.alibaba.ttl.spi.TtlAttachmentDelegate.setAutoWrapper($%<d);",
+                        i + 1, PARAM_TYPE_NAME_TO_DECORATE_METHOD_CLASS.get(paramTypeName), i + 1);
                 logger.info("insert code before method " + signatureOfMethod(method) + " of class " + method.getDeclaringClass().getName() + ": " + code);
                 insertCode.append(code);
             }
