@@ -1,12 +1,13 @@
 package com.alibaba.ttl.threadpool;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
-import com.alibaba.ttl.TtlCallable;
 import com.alibaba.ttl.spi.TtlEnhanced;
-import com.alibaba.ttl.TtlRunnable;
 
 import javax.annotation.Nonnull;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
 /**
  * {@link TransmittableThreadLocal} Wrapper of {@link ScheduledExecutorService},
@@ -27,25 +28,25 @@ class ScheduledExecutorServiceTtlWrapper extends ExecutorServiceTtlWrapper imple
     @Nonnull
     @Override
     public ScheduledFuture<?> schedule(@Nonnull Runnable command, long delay, @Nonnull TimeUnit unit) {
-        return scheduledExecutorService.schedule(TtlRunnable.get(command), delay, unit);
+        return scheduledExecutorService.schedule(getTtlRunnableWithAttachments(command), delay, unit);
     }
 
     @Nonnull
     @Override
     public <V> ScheduledFuture<V> schedule(@Nonnull Callable<V> callable, long delay, @Nonnull TimeUnit unit) {
-        return scheduledExecutorService.schedule(TtlCallable.get(callable), delay, unit);
+        return scheduledExecutorService.schedule(getTtlCallableWithAttachments(callable), delay, unit);
     }
 
     @Nonnull
     @Override
     public ScheduledFuture<?> scheduleAtFixedRate(@Nonnull Runnable command, long initialDelay, long period, @Nonnull TimeUnit unit) {
-        return scheduledExecutorService.scheduleAtFixedRate(TtlRunnable.get(command), initialDelay, period, unit);
+        return scheduledExecutorService.scheduleAtFixedRate(getTtlRunnableWithAttachments(command), initialDelay, period, unit);
     }
 
     @Nonnull
     @Override
     public ScheduledFuture<?> scheduleWithFixedDelay(@Nonnull Runnable command, long initialDelay, long delay, @Nonnull TimeUnit unit) {
-        return scheduledExecutorService.scheduleWithFixedDelay(TtlRunnable.get(command), initialDelay, delay, unit);
+        return scheduledExecutorService.scheduleWithFixedDelay(getTtlRunnableWithAttachments(command), initialDelay, delay, unit);
     }
 
     @Override

@@ -1,9 +1,7 @@
 package com.alibaba.ttl.threadpool;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
-import com.alibaba.ttl.TtlCallable;
 import com.alibaba.ttl.spi.TtlEnhanced;
-import com.alibaba.ttl.TtlRunnable;
 
 import javax.annotation.Nonnull;
 import java.util.Collection;
@@ -55,42 +53,42 @@ class ExecutorServiceTtlWrapper extends ExecutorTtlWrapper implements ExecutorSe
     @Nonnull
     @Override
     public <T> Future<T> submit(@Nonnull Callable<T> task) {
-        return executorService.submit(TtlCallable.get(task));
+        return executorService.submit(getTtlCallableWithAttachments(task));
     }
 
     @Nonnull
     @Override
     public <T> Future<T> submit(@Nonnull Runnable task, T result) {
-        return executorService.submit(TtlRunnable.get(task), result);
+        return executorService.submit(getTtlRunnableWithAttachments(task), result);
     }
 
     @Nonnull
     @Override
     public Future<?> submit(@Nonnull Runnable task) {
-        return executorService.submit(TtlRunnable.get(task));
+        return executorService.submit(getTtlRunnableWithAttachments(task));
     }
 
     @Nonnull
     @Override
     public <T> List<Future<T>> invokeAll(@Nonnull Collection<? extends Callable<T>> tasks) throws InterruptedException {
-        return executorService.invokeAll(TtlCallable.gets(tasks));
+        return executorService.invokeAll(getTtlCallableWithAttachments(tasks));
     }
 
     @Nonnull
     @Override
     public <T> List<Future<T>> invokeAll(@Nonnull Collection<? extends Callable<T>> tasks, long timeout, @Nonnull TimeUnit unit) throws InterruptedException {
-        return executorService.invokeAll(TtlCallable.gets(tasks), timeout, unit);
+        return executorService.invokeAll(getTtlCallableWithAttachments(tasks), timeout, unit);
     }
 
     @Nonnull
     @Override
     public <T> T invokeAny(@Nonnull Collection<? extends Callable<T>> tasks) throws InterruptedException, ExecutionException {
-        return executorService.invokeAny(TtlCallable.gets(tasks));
+        return executorService.invokeAny(getTtlCallableWithAttachments(tasks));
     }
 
     @Override
     public <T> T invokeAny(@Nonnull Collection<? extends Callable<T>> tasks, long timeout, @Nonnull TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException {
-        return executorService.invokeAny(TtlCallable.gets(tasks), timeout, unit);
+        return executorService.invokeAny(getTtlCallableWithAttachments(tasks), timeout, unit);
     }
 
     @Nonnull
