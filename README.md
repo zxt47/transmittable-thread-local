@@ -8,10 +8,11 @@
 [![Javadocs](https://www.javadoc.io/badge/com.alibaba/transmittable-thread-local.svg)](https://alibaba.github.io/transmittable-thread-local/apidocs/)
 [![Maven Central](https://img.shields.io/maven-central/v/com.alibaba/transmittable-thread-local.svg)](https://search.maven.org/search?q=g:com.alibaba%20AND%20a:transmittable-thread-local&core=gav)
 [![GitHub release](https://img.shields.io/github/release/alibaba/transmittable-thread-local.svg)](https://github.com/alibaba/transmittable-thread-local/releases)  
-[![Join the chat at https://gitter.im/alibaba/transmittable-thread-local](https://badges.gitter.im/alibaba/transmittable-thread-local.svg)](https://gitter.im/alibaba/transmittable-thread-local?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Chat at gitter.im](https://badges.gitter.im/alibaba/transmittable-thread-local.svg)](https://gitter.im/alibaba/transmittable-thread-local?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![GitHub Stars](https://img.shields.io/github/stars/alibaba/transmittable-thread-local)](https://github.com/alibaba/transmittable-thread-local/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/alibaba/transmittable-thread-local)](https://github.com/alibaba/transmittable-thread-local/fork)
 [![GitHub issues](https://img.shields.io/github/issues/alibaba/transmittable-thread-local.svg)](https://github.com/alibaba/transmittable-thread-local/issues)
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/alibaba/transmittable-thread-local.svg)](http://isitmaintained.com/project/alibaba/transmittable-thread-local "Percentage of issues still open")
-[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/alibaba/transmittable-thread-local.svg)](http://isitmaintained.com/project/alibaba/transmittable-thread-local "Average time to resolve an issue")
 
 [📖 English Documentation](README-EN.md) | 📖 中文文档
 
@@ -37,8 +38,7 @@
 - [❓ FAQ](#-faq)
 - [🗿 更多文档](#-%E6%9B%B4%E5%A4%9A%E6%96%87%E6%A1%A3)
 - [📚 相关资料](#-%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99)
-    - [Jdk core classes](#jdk-core-classes)
-    - [Java Agent](#java-agent)
+    - [Jdk Core Classes](#jdk-core-classes)
 - [👷 Contributors](#-contributors)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -48,7 +48,7 @@
 # 🔧 功能
 
 👉 在使用线程池等会池化复用线程的组件情况下，提供`ThreadLocal`值的传递功能，解决异步执行时上下文传递的问题。
-一个`Java`标准库本应为框架/中间件设施开发提供的标配能力，本库功能聚焦 & 0依赖，支持`Java` 12/11/10/9/8/7/6。
+一个`Java`标准库本应为框架/中间件设施开发提供的标配能力，本库功能聚焦 & 0依赖，支持`Java` 13/12/11/10/9/8/7/6。
 
 `JDK`的[`InheritableThreadLocal`](https://docs.oracle.com/javase/10/docs/api/java/lang/InheritableThreadLocal.html)类可以完成父线程到子线程的值传递。但对于使用线程池等会池化复用线程的组件的情况，线程由线程池创建好，并且线程是池化起来反复使用的；这时父子线程关系的`ThreadLocal`值传递已经没有意义，应用需要的实际上是把 **任务提交给线程池时**的`ThreadLocal`值传递到 **任务执行时**。
 
@@ -69,7 +69,8 @@
 
 1. 分布式跟踪系统
 2. 日志收集记录系统上下文
-3. 应用容器或上层框架跨应用代码给下层`SDK`传递信息
+3. `Session`级`Cache`
+4. 应用容器或上层框架跨应用代码给下层`SDK`传递信息
 
 各个场景的展开说明参见子文档 [需求场景](docs/requirement-scenario.md)。
 
@@ -290,7 +291,7 @@ java -javaagent:path/to/ttl-foo-name-changed.jar \
 <dependency>
     <groupId>com.alibaba</groupId>
     <artifactId>transmittable-thread-local</artifactId>
-    <version>2.10.2</version>
+    <version>2.11.0</version>
 </dependency>
 ```
 
@@ -311,20 +312,10 @@ java -javaagent:path/to/ttl-foo-name-changed.jar \
 
 # 📚 相关资料
 
-## Jdk core classes
+## Jdk Core Classes
 
 - [WeakHashMap](https://docs.oracle.com/javase/10/docs/api/java/util/WeakHashMap.html)
 - [InheritableThreadLocal](https://docs.oracle.com/javase/10/docs/api/java/lang/InheritableThreadLocal.html)
-
-## Java Agent
-
-- [Java SE 6 新特性: Instrumentation 新功能](http://www.ibm.com/developerworks/cn/java/j-lo-jse61/)
-- [Creation, dynamic loading and instrumentation with javaagents](http://dhruba.name/2010/02/07/creation-dynamic-loading-and-instrumentation-with-javaagents/)
-- [JavaAgent加载机制分析](http://alipaymiddleware.com/jvm/javaagent%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E5%88%86%E6%9E%90/)
-- 官方文档
-    - [`Java Agent`规范 - `JavaDoc`](https://docs.oracle.com/javase/10/docs/api/java/lang/instrument/package-summary.html#package.description)
-    - [JAR File Specification - JAR Manifest](https://docs.oracle.com/javase/10/docs/specs/jar/jar.html#jar-manifest)
-    - [Working with Manifest Files - The Java™ TutorialsHide](https://docs.oracle.com/javase/tutorial/deployment/jar/manifestindex.html)
 
 # 👷 Contributors
 

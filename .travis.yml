@@ -7,6 +7,7 @@ language: java
 # - Customizing the Build / Build Matrix
 #   https://docs.travis-ci.com/user/customizing-the-build/#Build-Matrix
 
+dist: trusty
 addons:
   apt:
     packages:
@@ -72,6 +73,10 @@ script:
   - ./scripts/run-agent-test.sh skipClean
   #  open jdk 12
   - switch_to_open_jdk12
+  - ./scripts/run-junit.sh skipClean
+  - ./scripts/run-agent-test.sh skipClean
+  #  open jdk 13
+  - switch_to_open_jdk13
   - ./scripts/run-junit.sh skipClean
   - ./scripts/run-agent-test.sh skipClean
 

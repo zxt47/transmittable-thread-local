@@ -5,11 +5,11 @@
 
 	<groupId>com.alibaba</groupId>
 	<artifactId>transmittable-thread-local</artifactId>
-	<version>2.11.0-SNAPSHOT</version>
+	<version>2.12.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>TransmittableThreadLocal(TTL)</name>
 	<description>
-		📌 The missing std Java™ lib(simple &amp; 0-dependency) for framework/middleware,
+		📌 The missing Java™ std lib(simple &amp; 0-dependency) for framework/middleware,
 		provide an enhanced InheritableThreadLocal that transmits ThreadLocal value between threads even using thread pooling components.
 	</description>
 	<url>https://github.com/alibaba/transmittable-thread-local</url>
@@ -45,6 +45,7 @@
 				<role>Developer</role>
 			</roles>
 			<timezone>+8</timezone>
+			<url>https://github.com/oldratlee</url>
 			<organization>Alibaba</organization>
 			<organizationUrl>http://www.alibaba.com</organizationUrl>
 		</developer>
@@ -56,17 +57,19 @@
 				<role>Developer</role>
 			</roles>
 			<timezone>+8</timezone>
+			<url>https://github.com/driventokill</url>
 			<organization>Alibaba</organization>
 			<organizationUrl>http://www.alibaba.com</organizationUrl>
 		</developer>
 		<developer>
 			<name>wuwen</name>
-			<id>wuwen</id>
+			<id>wuwen5</id>
 			<email>wuwen.55(AT)aliyun(DOT)com</email>
 			<roles>
 				<role>Developer</role>
 			</roles>
 			<timezone>+8</timezone>
+			<url>https://github.com/wuwen5</url>
 			<organization>ofpay</organization>
 			<organizationUrl>http://www.ofpay.com</organizationUrl>
 		</developer>
@@ -78,6 +81,7 @@
 				<role>Developer</role>
 			</roles>
 			<timezone>+8</timezone>
+			<url>https://github.com/LNAmp</url>
 			<organization>Alibaba</organization>
 			<organizationUrl>http://www.alibaba.com</organizationUrl>
 		</developer>
@@ -148,13 +152,13 @@
 		<dependency>
 			<groupId>io.reactivex.rxjava2</groupId>
 			<artifactId>rxjava</artifactId>
-			<version>2.2.10</version>
+			<version>2.2.11</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>io.reactivex.rxjava2</groupId>
 			<artifactId>rxkotlin</artifactId>
-			<version>2.3.0</version>
+			<version>2.4.0</version>
 			<scope>test</scope>
 		</dependency>
 		<!--
@@ -531,6 +535,10 @@
 			</activation>
 			<build>
 				<plugins>
+					<!--
+						Spotbugs support @SuppressWarnings
+						https://github.com/spotbugs/spotbugs/issues/737#issuecomment-416118033
+					-->
 					<plugin>
 						<groupId>com.github.spotbugs</groupId>
 						<artifactId>spotbugs-maven-plugin</artifactId>
@@ -560,9 +568,6 @@
 						Maven plugin which includes build-time git repository information into an POJO / *.properties).
 						Make your apps tell you which version exactly they were built from! Priceless in large distributed deployments.
 							https://github.com/ktoso/maven-git-commit-id-plugin
-
-						Spotbugs support @SuppressWarnings
-						https://github.com/spotbugs/spotbugs/issues/737#issuecomment-416118033
 					-->
 					<plugin>
 						<groupId>pl.project13.maven</groupId>

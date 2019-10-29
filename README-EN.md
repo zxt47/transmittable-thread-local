@@ -8,10 +8,11 @@
 [![Javadocs](https://www.javadoc.io/badge/com.alibaba/transmittable-thread-local.svg)](https://alibaba.github.io/transmittable-thread-local/apidocs/)
 [![Maven Central](https://img.shields.io/maven-central/v/com.alibaba/transmittable-thread-local.svg)](https://search.maven.org/search?q=g:com.alibaba%20AND%20a:transmittable-thread-local&core=gav)
 [![GitHub release](https://img.shields.io/github/release/alibaba/transmittable-thread-local.svg)](https://github.com/alibaba/transmittable-thread-local/releases)  
-[![Join the chat at https://gitter.im/alibaba/transmittable-thread-local](https://badges.gitter.im/alibaba/transmittable-thread-local.svg)](https://gitter.im/alibaba/transmittable-thread-local?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Chat at gitter.im](https://badges.gitter.im/alibaba/transmittable-thread-local.svg)](https://gitter.im/alibaba/transmittable-thread-local?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![GitHub Stars](https://img.shields.io/github/stars/alibaba/transmittable-thread-local)](https://github.com/alibaba/transmittable-thread-local/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/alibaba/transmittable-thread-local)](https://github.com/alibaba/transmittable-thread-local/fork)
 [![GitHub issues](https://img.shields.io/github/issues/alibaba/transmittable-thread-local.svg)](https://github.com/alibaba/transmittable-thread-local/issues)
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/alibaba/transmittable-thread-local.svg)](http://isitmaintained.com/project/alibaba/transmittable-thread-local "Percentage of issues still open")
-[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/alibaba/transmittable-thread-local.svg)](http://isitmaintained.com/project/alibaba/transmittable-thread-local "Average time to resolve an issue")
 
 📖 English Documentation | [📖 中文文档](README.md)
 
@@ -24,18 +25,16 @@
 - [🔧 Functions](#-functions)
 - [🎨 Requirements](#-requirements)
 - [👥 User Guide](#-user-guide)
-    - [1. simple usage](#1-simple-usage)
+    - [1. Simple usage](#1-simple-usage)
     - [2. Transmit value even using thread pool](#2-transmit-value-even-using-thread-pool)
         - [2.1 Decorate `Runnable` and `Callable`](#21-decorate-runnable-and-callable)
         - [2.2 Decorate thread pool](#22-decorate-thread-pool)
         - [2.3 Use Java Agent to decorate thread pool implementation class](#23-use-java-agent-to-decorate-thread-pool-implementation-class)
 - [🔌 Java API Docs](#-java-api-docs)
-- [🍪 Maven dependency](#-maven-dependency)
-- [🗿 More documentation](#-more-documentation)
-- [📚 Related resources](#-related-resources)
-    - [JDK core classes](#jdk-core-classes)
-    - [Java Agent](#java-agent)
-    - [Javassist](#javassist)
+- [🍪 Maven Dependency](#-maven-dependency)
+- [🗿 More Documentation](#-more-documentation)
+- [📚 Related Resources](#-related-resources)
+    - [JDK Core Classes](#jdk-core-classes)
 - [👷 Contributors](#-contributors)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -44,9 +43,9 @@
 
 # 🔧 Functions
 
-👉 The missing std Java™ lib(simple &amp; 0-dependency) for framework/middleware,
+👉 The missing Java™ std lib(simple & 0-dependency) for framework/middleware,
 provide an enhanced `InheritableThreadLocal` that transmits `ThreadLocal` value between threads even using thread pooling components.
-Support `Java` 12/11/10/9/8/7/6.
+Support `Java` 13/12/11/10/9/8/7/6.
 
 Class [`InheritableThreadLocal`](https://docs.oracle.com/javase/10/docs/api/java/lang/InheritableThreadLocal.html) in `JDK`
 can transmit value to child thread from parent thread.
@@ -65,7 +64,7 @@ The Requirements listed below is also why I sort out `TTL` in my work.
 
 # 👥 User Guide
 
-## 1. simple usage
+## 1. Simple usage
 
 ```java
 // set in parent thread
@@ -242,39 +241,28 @@ to start demo of "Use Java Agent to decorate thread pool implementation class".
 
 The current version Java API documentation: <https://alibaba.github.io/transmittable-thread-local/apidocs/>
 
-# 🍪 Maven dependency
+# 🍪 Maven Dependency
 
 ```xml
 <dependency>
     <groupId>com.alibaba</groupId>
     <artifactId>transmittable-thread-local</artifactId>
-    <version>2.10.2</version>
+    <version>2.11.0</version>
 </dependency>
 ```
 
 Check available version at [search.maven.org](https://search.maven.org/search?q=g:com.alibaba%20AND%20a:transmittable-thread-local&core=gav).
 
-# 🗿 More documentation
+# 🗿 More Documentation
 
 - [🎓 Developer Guide](docs/developer-guide-en.md)
 
-# 📚 Related resources
+# 📚 Related Resources
 
-## JDK core classes
+## JDK Core Classes
 
 - [WeakHashMap](https://docs.oracle.com/javase/10/docs/api/java/util/WeakHashMap.html)
 - [InheritableThreadLocal](https://docs.oracle.com/javase/10/docs/api/java/lang/InheritableThreadLocal.html)
-
-## Java Agent
-
-- [Java Agent规范](https://docs.oracle.com/javase/10/docs/api/java/lang/instrument/package-summary.html)
-- [Java SE 6 新特性: Instrumentation 新功能](http://www.ibm.com/developerworks/cn/java/j-lo-jse61/)
-- [Creation, dynamic loading and instrumentation with javaagents](http://dhruba.name/2010/02/07/creation-dynamic-loading-and-instrumentation-with-javaagents/)
-- [JavaAgent加载机制分析](http://alipaymiddleware.com/jvm/javaagent%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6%E5%88%86%E6%9E%90/)
-
-## Javassist
-
-- [Getting Started with Javassist](http://www.csg.ci.i.u-tokyo.ac.jp/~chiba/javassist/tutorial/tutorial.html)
 
 # 👷 Contributors
 
